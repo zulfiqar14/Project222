@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#10101d" />
+  <meta name="description" content="A little hello, with a little extra sparkle." />
+  <title>Hello, world! — A little moment of wonder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet" />
+  <style>
+    :root { color-scheme: dark; --ink: #f8f5ff; --muted: #aaa6c0; --violet: #b7a0ff; --pink: #ffb6ca; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; overflow-x: hidden; color: var(--ink); font-family: 'DM Sans', sans-serif; background: #10101d; }
+    body::before { position: fixed; inset: 0; z-index: -2; content: ''; background: radial-gradient(ellipse at 18% 20%, #3e2869 0, transparent 39%), radial-gradient(ellipse at 85% 79%, #3c214b 0, transparent 37%), linear-gradient(145deg, #161427, #0b0b14 70%); }
+    body::after { position: fixed; inset: 0; z-index: -1; content: ''; opacity: .19; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E"); }
+    .page { min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; padding: 34px clamp(22px, 6vw, 88px) 25px; }
+    header, footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand, .edition, .footer-note { font: 500 11px 'DM Mono', monospace; letter-spacing: .12em; text-transform: uppercase; }
+    .brand { display: flex; align-items: center; gap: 11px; color: #e9e4fa; }
+    .brand-mark { display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid #ffffff35; border-radius: 50%; color: var(--pink); font-size: 14px; }
+    .edition, .footer-note { color: #89849e; }
+    main { display: grid; place-items: center; padding: 55px 0 70px; }
+    .hero { width: min(100%, 840px); text-align: center; animation: rise .9s cubic-bezier(.2,.8,.2,1) both; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 29px; color: #d4c7ff; font: 400 11px 'DM Mono', monospace; letter-spacing: .2em; text-transform: uppercase; }
+    .eyebrow::before, .eyebrow::after { content: ''; width: 30px; height: 1px; background: linear-gradient(90deg, transparent, #b7a0ff99); }
+    .eyebrow::after { transform: rotate(180deg); }
+    h1 { margin: 0; font: 600 clamp(68px, 12vw, 142px)/.98 'Playfair Display', Georgia, serif; letter-spacing: -.065em; }
+    h1 span { display: block; color: transparent; background: linear-gradient(100deg, #f9d4e5 8%, #c6b1ff 50%, #a4dcff 93%); background-clip: text; -webkit-background-clip: text; }
+    .copy { max-width: 490px; margin: 28px auto 0; color: #bbb7ca; font-size: clamp(15px, 2vw, 18px); line-height: 1.8; }
+    .actions { display: flex; justify-content: center; align-items: center; gap: 13px; margin-top: 34px; }
+    button { border: 0; cursor: pointer; color: #171322; background: linear-gradient(110deg, #ffd2df, #d1c0ff 65%, #b3ddff); border-radius: 999px; padding: 14px 22px; font: 700 13px 'DM Sans', sans-serif; box-shadow: 0 8px 35px #bc9cff2d; transition: transform .2s, box-shadow .2s; }
+    button:hover { transform: translateY(-2px); box-shadow: 0 12px 42px #bc9cff55; }
+    button:focus-visible { outline: 2px solid white; outline-offset: 4px; }
+    .quiet { padding: 13px 18px; border: 1px solid #ffffff24; border-radius: 999px; color: #d0cbdc; font-size: 12px; }
+    .quiet .spark { margin-right: 7px; color: var(--pink); }
+    .orbit { position: relative; width: 110px; height: 110px; margin: 60px auto 0; border: 1px solid #ffffff17; border-radius: 50%; }
+    .orbit::before, .orbit::after { position: absolute; content: ''; border-radius: 50%; }
+    .orbit::before { inset: 12px; border: 1px dashed #ffffff24; animation: spin 28s linear infinite; }
+    .orbit::after { inset: 39px; background: radial-gradient(circle at 35% 30%, #fff, #e9b9ff 25%, #a27af2 65%, #594284); box-shadow: 0 0 30px #caa3ff77; }
+    .orbit i { position: absolute; z-index: 2; top: 8px; left: 49px; width: 7px; height: 7px; border-radius: 50%; background: #ffd4a2; box-shadow: 0 0 14px #ffcd96; }
+    footer { border-top: 1px solid #ffffff13; padding-top: 19px; }
+    .footer-note:last-child { text-align: right; }
+    .toast { position: fixed; left: 50%; bottom: 68px; padding: 12px 18px; color: #f6f1ff; background: #29243a; border: 1px solid #ffffff20; border-radius: 999px; box-shadow: 0 12px 35px #0005; font-size: 13px; opacity: 0; transform: translate(-50%, 10px); transition: opacity .25s, transform .25s; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    .sparkle { position: fixed; color: #f4d5ff; pointer-events: none; animation: burst 800ms ease-out forwards; }
+    @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes burst { to { opacity: 0; transform: translate(var(--x), var(--y)) rotate(100deg) scale(.2); } }
+    @media (max-width: 540px) { .page { padding-top: 23px; padding-bottom: 18px; } .edition { font-size: 9px; } main { padding: 45px 0 55px; } .actions { flex-direction: column; } .orbit { margin-top: 43px; } footer { font-size: 9px; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand"><span class="brand-mark" aria-hidden="true">✳</span> little moments</div>
+      <div class="edition">A small beginning · No. 001</div>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="title">
+        <div class="eyebrow">A note from the universe</div>
+        <h1 id="title">Hello,<span>world!</span></h1>
+        <p class="copy">Every great thing starts somewhere. Let this be your little reminder that the next beautiful beginning could be right now.</p>
+        <div class="actions">
+          <button id="helloButton" type="button">Send a little hello <span aria-hidden="true">↗</span></button>
+          <div class="quiet"><span class="spark" aria-hidden="true">✦</span>Glad you’re here</div>
+        </div>
+        <div class="orbit" aria-hidden="true"><i></i></div>
+      </section>
+    </main>
+    <footer>
+      <div class="footer-note">Made with a little wonder</div>
+      <div class="footer-note">Take a breath. Begin again.</div>
+    </footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite">Hello right back ✨</div>
+  <script>
+    const button = document.querySelector('#helloButton');
+    const toast = document.querySelector('#toast');
+    let toastTimer;
+    button.addEventListener('click', () => {
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+      for (let i = 0; i < 12; i++) {
+        const star = document.createElement('span');
+        star.className = 'sparkle';
+        star.textContent = i % 3 === 0 ? '✦' : '·';
+        star.style.left = `${window.innerWidth / 2 + (Math.random() - .5) * 180}px`;
+        star.style.top = `${window.innerHeight / 2 + (Math.random() - .5) * 80}px`;
+        star.style.setProperty('--x', `${(Math.random() - .5) * 150}px`);
+        star.style.setProperty('--y', `${(Math.random() - .7) * 150}px`);
+        document.body.append(star);
+        setTimeout(() => star.remove(), 850);
+      }
+    });
+  </script>
+</body>
+</html>
